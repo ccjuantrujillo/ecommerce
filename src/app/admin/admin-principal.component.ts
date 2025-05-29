@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './views/admin-customer/admin-customer.component';
 import { AdminDashboardComponent } from './views/admin-dashboard/admin-dashboard.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { AdminProductModalComponent } from './components/admin-product-modal/admin-product-modal.component';
+import { AdminCategoryModalComponent } from './components/admin-category-modal/admin-category-modal.component';
 
 @Component({
   selector: 'app-admin-principal',
@@ -20,7 +22,9 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
     CommonModule,
     CustomerComponent,
     AdminDashboardComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    AdminProductModalComponent,
+    AdminCategoryModalComponent
   ],
   template:`
     <div class="container-fluid">
@@ -61,10 +65,15 @@ import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.
             </div>
 
         </div>
-
       </div>
-      
     </div>
+
+    <!-- Product Modal -->
+    <app-admin-product-modal></app-admin-product-modal>
+
+    <!-- Category Modal -->
+     <app-admin-category-modal></app-admin-category-modal>
+    
   `,
   styleUrl: './admin-principal.component.css',  
   encapsulation: ViewEncapsulation.None 

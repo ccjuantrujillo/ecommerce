@@ -11,7 +11,7 @@ export class AdminProductService {
   constructor() {}
 
   tokenAccess() {
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ4NTMyNzg5LCJleHAiOjE3NDg1MzYzODksIm5iZiI6MTc0ODUzMjc4OSwianRpIjoicTAyclZYYkpVS25CQzFMUSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.sof7TmAE5pbIQoSJBWNeGzH4WuVSLQpK3rxgPhvcor4";
+    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzQ4NTQ2OTcyLCJleHAiOjE3NDg1NTA1NzIsIm5iZiI6MTc0ODU0Njk3MiwianRpIjoiT2daREpvT25lNGR6bW04USIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Afh7T0GD4MjAeD0-7N7PB9dmugQ_vE36zQPJK3sp0nI";
     return {
         headers: {
           Authorization: `Bearer ${token}`
@@ -44,6 +44,7 @@ export class AdminProductService {
   async create(product: any) {
     try {
       const response = await axios.post(this.base, product, this.tokenAccess());
+      return response.data;
     }
     catch(error) {
       console.error('Error al crear producto:', error);

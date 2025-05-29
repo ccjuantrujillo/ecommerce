@@ -55,7 +55,7 @@ import { CommonModule } from '@angular/common';
                                 <tr *ngFor="let product of products">
                                     <td><img [src]="product.image_url" class="product-img" alt="Producto"></td>
                                     <td>{{ product.name }}</td>
-                                    <td>Electrónicos</td>
+                                    <td>{{ product.category.name }}</td>
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.stock }}</td>
                                     <td>
