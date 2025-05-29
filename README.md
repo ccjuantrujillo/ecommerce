@@ -20,6 +20,7 @@ Este proyecto es una aplicación de comercio electrónico desarrollada en Angula
 
 ## Estructura del Proyecto
 
+```sh
 src/
 ├── app/
 │ ├── admin/ # Módulo del administrador
@@ -29,3 +30,4 @@ src/
 │ │ ├── components/ # Componentes públicos
 │ │ └── views/ # Página de inicio, productos, carrito, etc.
 │ └── app.routes.ts
+```
