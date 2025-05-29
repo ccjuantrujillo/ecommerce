@@ -28,7 +28,7 @@ import { ProductListComponent } from '../../components/product-list/product-list
                 </div>
             </div>
             
-            <!-- Products Grid -->
+            <!-- Products Components -->
             <app-product-list></app-product-list>
 
 

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AdminProductService } from '../../services/admin-product.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [CommonModule],
   template: `
         <!-- Products Section -->
         <div id="products" class="page-section active">
@@ -50,37 +52,16 @@ import { Component } from '@angular/core';
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><img src="https://via.placeholder.com/50" class="product-img" alt="Producto"></td>
-                                    <td>iPhone 14 Pro</td>
+                                <tr *ngFor="let product of products">
+                                    <td><img [src]="product.image_url" class="product-img" alt="Producto"></td>
+                                    <td>{{ product.name }}</td>
                                     <td>Electrónicos</td>
-                                    <td>$999.00</td>
-                                    <td>25</td>
-                                    <td><span class="badge bg-success">Activo</span></td>
+                                    <td>{{ product.price }}</td>
+                                    <td>{{ product.stock }}</td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                        <span class="badge bg-success" *ngIf="product.is_active">Activo</span>
+                                        <span class="badge bg-warning" *ngIf="!product.is_active">>Inactivo</span>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://via.placeholder.com/50" class="product-img" alt="Producto"></td>
-                                    <td>MacBook Air M2</td>
-                                    <td>Electrónicos</td>
-                                    <td>$1299.00</td>
-                                    <td>15</td>
-                                    <td><span class="badge bg-success">Activo</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
-                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><img src="https://via.placeholder.com/50" class="product-img" alt="Producto"></td>
-                                    <td>Camiseta Nike</td>
-                                    <td>Ropa</td>
-                                    <td>$29.99</td>
-                                    <td>100</td>
-                                    <td><span class="badge bg-warning">Inactivo</span></td>
                                     <td>
                                         <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
@@ -106,5 +87,17 @@ import { Component } from '@angular/core';
   styleUrl: './admin-product.component.css'
 })
 export class ProductComponent {
+    private adminProductService = inject(AdminProductService);
+
+    products: any[] = [];
+
+    constructor() {
+        this.loadProducts();
+    }
+
+    async loadProducts() {
+        this.products = await this.adminProductService.getAll();
+                console.log(this.products);
+    }
 
 }
